@@ -1,0 +1,21 @@
+{
+  "name": "beamng-drive-multiplayer-mod",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "BeamNG.drive multiplayer mod - authoritative multiplayer core supporting up to 255 players",
+  "scripts": {
+    "server": "tsx server/src/main.ts",
+    "client": "tsx client/src/main.ts",
+    "smoke": "tsx scripts/smoke.ts",
+    "smoke-255": "tsx scripts/smoke-255.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}
