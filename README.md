@@ -111,3 +111,52 @@ the game's Lua mod layer:
 The authoritative simulation itself lives in the engine (`be:physics*`, vehicle
 controllers); `server/src/VehicleSim.ts` is the drop-in reference implementation used
 by the server to advance state and produce snapshots.
+
+## Install, run, connect and host
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) 18+ (LTS recommended).
+
+### 1. Install
+```bash
+git clone <your-fork-or-repo-url> beamng-drive-multiplayer-mod
+cd beamng-drive-multiplayer-mod
+npm install
+```
+
+### 2. Run a host server (supports up to 255 players)
+```bash
+npm run server            # binds 0.0.0.0:4444, max players: 255, tick rate: 30 Hz
+# optional overrides via constructor args: port, maxPlayers, tickRate, heartbeatTimeoutMs
+```
+
+### 3. Connect a client
+```bash
+npm run client -- --host <server-ip> --port 4444 --name "PlayerName" --localPlayerId <slot>
+```
+
+- `--host` — server address (e.g. `127.0.0.1` for localhost / LAN play, or a server IP).
+- `--port` — server port (default `4444`).
+- `--name` — display name sent during `handshake`.
+- `--localPlayerId` — player slot (`0..254`) the client claims.
+
+### 4. Host it yourself / play with others
+- One player runs `npm run server` (the host).
+- Other players run `npm run client` pointing at the host's `--host`/`--port`.
+- Up to 255 clients can join a single hosted session; the 256th is rejected with
+  `session_full_max_players_255`.
+- For internet play, forward the server port and use the host's public IP.
+
+### 5. Verify
+```bash
+npm run smoke      # 2-client end-to-end test (welcome, authoritative movement, chat)
+npm run smoke-255  # 255-client scale test + overflow rejection
+```
+
+## Disclaimer
+
+**This mod and its source code were coded with AI assistance** (generated and reviewed
+with AI tools) as a proof-of-concept / starting point for a BeamNG.drive multiplayer
+mod supporting up to 255 players. It is not affiliated with or endorsed by BeamNG.drive
+or BeamMP. Use it as a technical foundation; further development, engine integration
+and testing (in-game via the Lua mod layer) would still be needed before real-world use.
