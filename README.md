@@ -1,5 +1,5 @@
 # BeamNG.drive Multiplayer Mod — "Up to 255 Players"
-
+# Coded with OpenCode frontend/ agent Flint 40B
 A BeamNG.drive multiplayer mod core that brings authoritative online multiplayer
 to BeamNG.drive (the game this was built against: v0.39/0.40 era, LuaJIT + LuaSocket
 in the engine) and supports **up to 255 players per session**.
